@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "1.10.5",
-  "serial": 16,
+  "serial": 14,
   "lineage": "9fac9d7a-6a26-0bcd-5eea-fca11960e34f",
   "outputs": {},
   "resources": [
@@ -259,7 +259,13 @@
             [
               {
                 "type": "get_attr",
-                "value": "kube_config_raw"
+                "value": "kube_config"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "kube_admin_config"
               }
             ],
             [
@@ -271,13 +277,7 @@
             [
               {
                 "type": "get_attr",
-                "value": "kube_config"
-              }
-            ],
-            [
-              {
-                "type": "get_attr",
-                "value": "kube_admin_config"
+                "value": "kube_config_raw"
               }
             ]
           ],

@@ -1,30 +1,10 @@
 {
   "version": 4,
   "terraform_version": "1.10.5",
-  "serial": 16,
+  "serial": 11,
   "lineage": "9fac9d7a-6a26-0bcd-5eea-fca11960e34f",
   "outputs": {},
   "resources": [
-    {
-      "mode": "data",
-      "type": "azurerm_resource_group",
-      "name": "storage_rg",
-      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
-      "instances": [
-        {
-          "schema_version": 0,
-          "attributes": {
-            "id": "/subscriptions/2981bf38-3a73-4a81-8373-416f0d45f251/resourceGroups/StorageRG",
-            "location": "uksouth",
-            "managed_by": "",
-            "name": "StorageRG",
-            "tags": {},
-            "timeouts": null
-          },
-          "sensitive_attributes": []
-        }
-      ]
-    },
     {
       "mode": "managed",
       "type": "azurerm_container_registry",
@@ -265,12 +245,6 @@
             [
               {
                 "type": "get_attr",
-                "value": "kube_admin_config_raw"
-              }
-            ],
-            [
-              {
-                "type": "get_attr",
                 "value": "kube_config"
               }
             ],
@@ -278,6 +252,12 @@
               {
                 "type": "get_attr",
                 "value": "kube_admin_config"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "kube_admin_config_raw"
               }
             ]
           ],
@@ -324,56 +304,6 @@
           },
           "sensitive_attributes": [],
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
-        }
-      ]
-    },
-    {
-      "mode": "managed",
-      "type": "azurerm_mssql_server",
-      "name": "sql_import",
-      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
-      "instances": [
-        {
-          "schema_version": 0,
-          "attributes": {
-            "administrator_login": "azureuser",
-            "administrator_login_password": null,
-            "administrator_login_password_wo": null,
-            "administrator_login_password_wo_version": 0,
-            "azuread_administrator": [],
-            "connection_policy": "Default",
-            "express_vulnerability_assessment_enabled": false,
-            "fully_qualified_domain_name": "sql-import.database.windows.net",
-            "id": "/subscriptions/2981bf38-3a73-4a81-8373-416f0d45f251/resourceGroups/StorageRG/providers/Microsoft.Sql/servers/sql-import",
-            "identity": [],
-            "location": "uksouth",
-            "minimum_tls_version": "1.2",
-            "name": "sql-import",
-            "outbound_network_restriction_enabled": false,
-            "primary_user_assigned_identity_id": "",
-            "public_network_access_enabled": true,
-            "resource_group_name": "StorageRG",
-            "restorable_dropped_database_ids": [],
-            "tags": {},
-            "timeouts": null,
-            "transparent_data_encryption_key_vault_key_id": "",
-            "version": "12.0"
-          },
-          "sensitive_attributes": [
-            [
-              {
-                "type": "get_attr",
-                "value": "administrator_login_password_wo"
-              }
-            ],
-            [
-              {
-                "type": "get_attr",
-                "value": "administrator_login_password"
-              }
-            ]
-          ],
-          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
         }
       ]
     }
