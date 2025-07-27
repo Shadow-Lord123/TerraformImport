@@ -1,27 +1,31 @@
-#!/bin/bash
+# import2.ps1
 
-# Define your tag
-TAG_NAME="environment"
-TAG_VALUE="dev"
+$TagName = "environment"
+$TagValue = "dev"
 
-# Get all resources with that tag
-az resource list --tag "$TAG_NAME=$TAG_VALUE" --query "[].{id:id,type:type}" -o tsv |
-while read -r RESOURCE_ID RESOURCE_TYPE; do
-    case $RESOURCE_TYPE in
-        "Microsoft.Sql/servers")
-            echo "terraform import azurerm_mssql_server.sql_import $RESOURCE_ID"
-            ;;
-        "Microsoft.Sql/servers/elasticPools")
-            echo "terraform import azurerm_mssql_elasticpool.sql_ep $RESOURCE_ID"
-            ;;
-        "Microsoft.ContainerRegistry/registries")
-            echo "terraform import azurerm_container_registry.kritagyacontainer $RESOURCE_ID"
-            ;;
-        "Microsoft.ContainerService/managedClusters")
-            echo "terraform import azurerm_kubernetes_cluster.aks_import $RESOURCE_ID"
-            ;;
-        *)
-            echo "# Unknown resource type: $RESOURCE_TYPE"
-            ;;
-    esac
-done
+# Get resources with the tag
+$resources = az resource list --tag "$TagName=$TagValue" | ConvertFrom-Json
+
+foreach ($resource in $resources) {
+    $id = $resource.id
+    $type = $resource.type
+
+    switch ($type) {
+        "Microsoft.Sql/servers" {
+            Write-Output "terraform import azurerm_mssql_server.sql_import $id"
+        }
+        "Microsoft.Sql/servers/elasticPools" {
+            Write-Output "terraform import azurerm_mssql_elasticpool.sql_ep $id"
+        }
+        "Microsoft.ContainerRegistry/registries" {
+            Write-Output "terraform import azurerm_container_registry.kritagyacontainer $id"
+        }
+        "Microsoft.ContainerService/managedClusters" {
+            Write-Output "terraform import azurerm_kubernetes_cluster.aks_import $id"
+        }
+        default {
+            Write-Output "# Unknown resource type: $type"
+        }
+    }
+}
+
